@@ -10,7 +10,7 @@ env:
   GitHubName: "happy-lappy"
 
 jobs:
-  nanadevelop:
+  manodevelop:
     runs-on: ubuntu-20.04
     steps:
       - name: Set Git Configs & Secrets
