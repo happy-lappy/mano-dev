@@ -25,17 +25,16 @@ jobs:
         run: |
           git clone "https://${{ secrets.GH_TOK }}@github.com/eyMarv/MassActionBot" mano-dev || exit 1
           git clone "https://${{ secrets.GH_TOK }}@github.com/happy-lappy/mano-db.git" dbase || exit 1
-      - name: Cache deps
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: "mano"
+      - name: Install requirements
+        continue-on-error: true
+        run: |
+          cd mano-dev
+          pip3 install -r requirements.txt
       - name: Build wheels
         timeout-minutes: 330
         continue-on-error: true
         run: |
           cd mano-dev
-          pip3 install Pyrogram
           python3 -m bsxs
       - name: Quality Control
         run: |
